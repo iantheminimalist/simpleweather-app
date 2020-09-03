@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap');
+
+
+$color-darkGrey: #282c34;
+
+
+.main{
+    background-color: $color-darkGrey;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    .content{
+        font-family: 'Open Sans', sans-serif;
+        margin: 10px 10px;
+        padding: 15px 15px;
+        background-color: white;
+        color: $color-darkGrey;
+
+    }
+
+    .head{
+        font-weight: 700;
+        letter-spacing: 5px;
+    }
+    .sub-head{
+        font-weight: 300;
+    }
+}
