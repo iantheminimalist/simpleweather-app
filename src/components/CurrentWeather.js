@@ -1,5 +1,11 @@
 import React , { useState, useEffect } from 'react';
+import { Camera, CloudDrizzle } from 'react-feather';
+import { Row , Col } from 'reactstrap';
+
 const axios = require('axios');
+
+
+
 
 //`https://api.weatherbit.io/v2.0/current&key=${key}&lat=38.123&lon=-78.543`
 const key = process.env.REACT_APP_WEATHER_API_KEY2;
@@ -7,24 +13,35 @@ const url=`https://api.weatherbit.io/v2.0/current?&lat=32.6732763&lon=-117.11469
     
 
 export const CurrentWeather = () => {
-    const [ data , setData ] = useState([]);
+    const [ data , setData ] = useState( [] );
     console.log(key); 
 
     useEffect( () => {
         let isCancelled = false;
+
         async function fetchWeather (){
-            const request = await axios.get(url);
-            console.log(request.data.data.length);
-            setData(request.data.data[0])
-            //return request;
+        try{
+            if (!isCancelled){
+                const request = await axios.get(url);
+                console.log(request.data.data);
+                setData(request.data.data[0].weather);
+                console.log(data)
+                //return request;
+                console.log("isCanceled" + isCancelled);
+            }
+        }catch(error){
+            console.log(error);
+
+        }
+
         };
         fetchWeather();
+        console.log("isCanceled" + isCancelled)
 
-        return () => {
-            isCancelled = true;
-          };
+          console.log("isCanceled2" + isCancelled);
+
     },[]);
-console.log(data.city_name);
+
 
 //data
 
@@ -36,12 +53,16 @@ console.log(data.city_name);
     }).catch(error => console.log(error))
 
 */
-
-    return (
+    return ( 
         <div>
-    <ul>
-    {data.city_name}
-    </ul>
+        <Row>
+            <Col md="4">
+                {data.icon}
+            </Col>
+            <Col md="8">
+                <p>City, State</p>
+            </Col>
+        </Row>
         </div>
     )
 };
