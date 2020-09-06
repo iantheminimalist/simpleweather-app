@@ -17,11 +17,7 @@ export default class Main extends Component {
                     <Container>
                     <h3>SIMPLE WEATHER APP</h3>
                     <hr />
-                    <div className="header">
-                    <Row>
                     <CurrentWeather />
-                    </Row>
-                    </div>
                     <hr />
                     </Container>
                     <Location />

@@ -1,7 +1,7 @@
 import React , { useState, useEffect } from 'react';
-import { Camera, CloudDrizzle } from 'react-feather';
-import { Row , Col } from 'reactstrap';
 
+import { Row , Col, Container } from 'reactstrap';
+import { baseUrl } from './baseUrl';
 const axios = require('axios');
 
 
@@ -9,39 +9,35 @@ const axios = require('axios');
 
 //`https://api.weatherbit.io/v2.0/current&key=${key}&lat=38.123&lon=-78.543`
 const key = process.env.REACT_APP_WEATHER_API_KEY2;
-const url=`https://api.weatherbit.io/v2.0/current?&lat=32.6732763&lon=-117.11469799999999&key=${key}`;
-    
+
+const url = `https://api.weatherbit.io/v2.0/current?&lat=32.6732763&lon=-117.11469799999999&key=${key}`;
+
 
 export const CurrentWeather = () => {
     const [ data , setData ] = useState( [] );
-    console.log(key); 
+    const [weather, setWeatherIcon ] = useState( '' );
+
 
     useEffect( () => {
         let isCancelled = false;
 
         async function fetchWeather (){
-        try{
-            if (!isCancelled){
+
                 const request = await axios.get(url);
                 console.log(request.data.data);
-                setData(request.data.data[0].weather);
-                console.log(data)
+                setData(request.data.data[0]);
+                setWeatherIcon(request.data.data[0].weather);
+                console.log(data);
+                console.log(weather);
                 //return request;
                 console.log("isCanceled" + isCancelled);
-            }
-        }catch(error){
-            console.log(error);
-
-        }
 
         };
         fetchWeather();
-        console.log("isCanceled" + isCancelled)
-
-          console.log("isCanceled2" + isCancelled);
-
-    },[]);
-
+        console.log(data);
+    }, []);
+    const weatherIcon =  `/assets/icons/${weather.icon}.png`;
+    console.log(weatherIcon);
 
 //data
 
@@ -53,16 +49,21 @@ export const CurrentWeather = () => {
     }).catch(error => console.log(error))
 
 */
+console.log(weatherIcon);
     return ( 
         <div>
-        <Row>
+
+            <Row>
             <Col md="4">
-                {data.icon}
+                <img src={baseUrl + weatherIcon} width="50px" height="50px" alt=''/>
+                <p>{weather.description}</p>
             </Col>
             <Col md="8">
-                <p>City, State</p>
+            {data.city_name}
             </Col>
         </Row>
+
+
         </div>
     )
 };

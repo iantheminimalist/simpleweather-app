@@ -15,10 +15,11 @@ $color-darkGrey: #282c34;
 
     .content{
         font-family: 'Open Sans', sans-serif;
-        margin: 10px 10px;
-        padding: 15px 15px;
+        margin: 5px 5px;
+        padding: 40px;
         background-color: white;
         color: $color-darkGrey;
+        min-width: 75vh;
 
     }
 
