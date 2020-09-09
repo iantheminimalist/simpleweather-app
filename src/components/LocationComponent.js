@@ -1,20 +1,20 @@
 import React from 'react';
 import { usePosition } from 'use-position';
+import { CurrentWeather } from './CurrentWeather';
+
+//import { CurrentWeather } from './CurrentWeather';
 
  const Location = () => {
     const {
         latitude,
-        longitude,
-        error,
+        longitude
       } = usePosition();
 
+
+ 
     return (
         <div>
-    <code>
-      latitude: {latitude}<br/>
-      longitude: {longitude}<br/>
-      error: {error}
-    </code>
+          <CurrentWeather lat={latitude} long={longitude} />
         </div>
     )
 }

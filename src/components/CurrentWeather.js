@@ -1,65 +1,56 @@
 import React , { useState, useEffect } from 'react';
 
-import { Row , Col, Container } from 'reactstrap';
+import { Row , Col } from 'reactstrap';
 import { baseUrl } from './baseUrl';
+
+
 const axios = require('axios');
 
 
+// const key = `https://api.weatherbit.io/v2.0/current?&lat=32.6732763&lon=-117.11469799999999&key=${key}`;
+const key2 = process.env.REACT_APP_WEATHER_API_KEY2;
 
 
-//`https://api.weatherbit.io/v2.0/current&key=${key}&lat=38.123&lon=-78.543`
-const key = process.env.REACT_APP_WEATHER_API_KEY2;
-
-const url = `https://api.weatherbit.io/v2.0/current?&lat=32.6732763&lon=-117.11469799999999&key=${key}`;
 
 
-export const CurrentWeather = () => {
-    const [ data , setData ] = useState( [] );
-    const [weather, setWeatherIcon ] = useState( '' );
+
+export const CurrentWeather = (props) => {
+    console.log(props);
+
+    const [ data , setData ] = useState( [] ); // grab weather data
+    const [weather, setWeatherIcon ] = useState( '' ); // grab weather code
 
 
     useEffect( () => {
-        let isCancelled = false;
 
-        async function fetchWeather (){
+    async function fetchWeather (){
+        const url = `https://api.weatherbit.io/v2.0/current?&lat=${props.lat}&lon=${props.long}&key=${key2}`;
+            const request = await axios.get(url);
+            console.log(request.data.data);
+            setData(request.data.data[0]);
+            setWeatherIcon(request.data.data[0].weather);
+            //return request;
+    }
+            fetchWeather();
 
-                const request = await axios.get(url);
-                console.log(request.data.data);
-                setData(request.data.data[0]);
-                setWeatherIcon(request.data.data[0].weather);
-                console.log(data);
-                console.log(weather);
-                //return request;
-                console.log("isCanceled" + isCancelled);
-
-        };
-        fetchWeather();
-        console.log(data);
-    }, []);
+    }, [props]);
+     
     const weatherIcon =  `/assets/icons/${weather.icon}.png`;
-    console.log(weatherIcon);
-
-//data
 
 
-/*
-    axios.get(url)
-    .then(resp => {
-        console.log(resp.data);
-    }).catch(error => console.log(error))
 
-*/
-console.log(weatherIcon);
     return ( 
         <div>
 
             <Row>
             <Col md="4">
-                <img src={baseUrl + weatherIcon} width="50px" height="50px" alt=''/>
+                <img src={baseUrl + weatherIcon} width="75px" height="75px" alt=''/>
                 <p>{weather.description}</p>
+
             </Col>
             <Col md="8">
-            {data.city_name}
+                <h2>{data.city_name}, {data.state_code}</h2>
+                <h3>{data.temp}°C</h3>
             </Col>
         </Row>
 
