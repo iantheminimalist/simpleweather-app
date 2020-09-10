@@ -6,9 +6,9 @@ import { baseUrl } from './baseUrl';
 
 const axios = require('axios');
 
-
-// const key = `https://api.weatherbit.io/v2.0/current?&lat=32.6732763&lon=-117.11469799999999&key=${key}`;
-const key2 = process.env.REACT_APP_WEATHER_API_KEY2;
+//  WeatherBit API Keys
+//  const key = process.env.REACT_APP_WEATHER_API_KEY2;
+    const key2 = process.env.REACT_APP_WEATHER_API_KEY2;
 
 
 
@@ -36,19 +36,16 @@ export const CurrentWeather = (props) => {
     }, [props]);
      
     const weatherIcon =  `/assets/icons/${weather.icon}.png`;
-
-
-
     return ( 
         <div>
 
             <Row>
-            <Col md="4">
-                <img src={baseUrl + weatherIcon} width="75px" height="75px" alt=''/>
+            <Col md="5" className=" text-center">
+                <img src={baseUrl + weatherIcon} width="75px" height="75px" alt=''/> <br />
                 <p>{weather.description}</p>
 
             </Col>
-            <Col md="8">
+            <Col md="7" className="text-md-left text-center">
                 <h2>{data.city_name}, {data.state_code}</h2>
                 <h3>{data.temp}°C</h3>
             </Col>

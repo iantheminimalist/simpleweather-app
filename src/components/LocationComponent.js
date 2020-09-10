@@ -1,6 +1,7 @@
 import React from 'react';
 import { usePosition } from 'use-position';
 import { CurrentWeather } from './CurrentWeather';
+import { FiveDayForecast } from './FiveDayForecast';
 
 //import { CurrentWeather } from './CurrentWeather';
 
@@ -15,6 +16,8 @@ import { CurrentWeather } from './CurrentWeather';
     return (
         <div>
           <CurrentWeather lat={latitude} long={longitude} />
+          <hr />
+          <FiveDayForecast lat={latitude} long={longitude} />
         </div>
     )
 }

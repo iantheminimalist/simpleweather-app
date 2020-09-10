@@ -13,7 +13,7 @@ export default class Main extends Component {
             <div className="main">
                 <div className="content">
                     <Container>
-                    <h3>SIMPLE WEATHER APP</h3>
+                    <h3 className="text-center">SIMPLE WEATHER APP</h3>
                     <hr />
                     <Location />
                     <hr />
