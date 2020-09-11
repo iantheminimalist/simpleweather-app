@@ -1,10 +1,62 @@
 import React, { useEffect, useState } from 'react'
+import { baseUrl } from './baseUrl';
 import Axios from 'axios';
 
 
 //  WeatherBit API Keys
-//  const key = process.env.REACT_APP_WEATHER_API_KEY2;
+ // const key = process.env.REACT_APP_WEATHER_API_KEY;
 const key2 = process.env.REACT_APP_WEATHER_API_KEY2;
+
+
+function RenderForecast({iconCode, foredate, id, ts }){
+    const weatherIcon =  `/assets/icons/${iconCode}.png`;
+
+
+    var dt = new Date(ts*1000);
+    var hr = dt.getHours();
+    var m = "0" + dt.getMinutes();
+    var s = "0" + dt.getSeconds();
+    var options = { weekday: 'short'};
+
+    const check = hr+ ':' + m.substr(-2) + ':' + s.substr(-2);
+    //console.log(check);
+    let day = new Date(foredate + " " + check);
+    console.log(day);
+    
+  const weekDay = new Intl.DateTimeFormat('en-US', options).format(day);
+
+
+
+    return(
+
+        <React.Fragment>
+            <li class="list-group-item border-0" key={id}>
+            <img src={baseUrl + weatherIcon} width="40px" height="40px" alt=''/> <br />
+            <p>{weekDay}</p>
+            </li>
+        </React.Fragment>
+    );
+}
+
+function RenderFiveForecast({forecasts}){
+if(forecasts){
+    return(
+        <div>
+            <ul class="list-group list-group-horizontal text-center ">
+            {forecasts.slice(0,5).map( forecast => {
+                let key = 0;
+                key++;
+                return(
+                    <RenderForecast iconCode={forecast.weather.icon} foredate={forecast.valid_date} id={key} ts={forecast.ts}/>
+                )
+            })}
+            </ul>
+
+        </div>
+    );
+}
+
+}
 
 export const FiveDayForecast = (props) => {
     const [ data, setData ] = useState([]);
@@ -27,9 +79,11 @@ export const FiveDayForecast = (props) => {
         <div>
             {data.slice(0,5).map( forecast => {
                 return(
-                    console.log(forecast.weather.icon)
+                   <div />
                 )
             })}
+
+ <RenderFiveForecast forecasts={data}/> 
         </div>
     )
 }

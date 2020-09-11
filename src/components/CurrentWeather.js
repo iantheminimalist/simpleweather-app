@@ -9,13 +9,9 @@ const axios = require('axios');
 //  WeatherBit API Keys
 //  const key = process.env.REACT_APP_WEATHER_API_KEY2;
     const key2 = process.env.REACT_APP_WEATHER_API_KEY2;
-
-
-
-
-
+    
 export const CurrentWeather = (props) => {
-    console.log(props);
+    //console.log(props);
 
     const [ data , setData ] = useState( [] ); // grab weather data
     const [weather, setWeatherIcon ] = useState( '' ); // grab weather code
