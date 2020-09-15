@@ -24,10 +24,27 @@ $color-darkGrey: #282c34;
     }
 
     .head{
-        font-weight: 700;
+        font-weight: 300;
         letter-spacing: 5px;
     }
     .sub-head{
         font-weight: 300;
+    }
+}
+
+.weatherIcon{
+    .head{
+        width: 75px;
+        height: 75px;
+    }
+    .mini{
+        width: 35px;
+        height: 35px;
+    }
+}
+.btn-link{
+    color:$color-darkGrey !important;
+    :hover{
+        color: gray;
     }
 }

@@ -4,8 +4,8 @@ import Axios from 'axios';
 
 
 //  WeatherBit API Keys
- // const key = process.env.REACT_APP_WEATHER_API_KEY;
-const key2 = process.env.REACT_APP_WEATHER_API_KEY2;
+    const key1 = process.env.REACT_APP_WEATHER_API_KEY;
+    //  const key2 = process.env.REACT_APP_WEATHER_API_KEY2;
 
 
 function RenderForecast({iconCode, foredate, id, ts }){
@@ -17,31 +17,27 @@ function RenderForecast({iconCode, foredate, id, ts }){
     var m = "0" + dt.getMinutes();
     var s = "0" + dt.getSeconds();
     var options = { weekday: 'short'};
-
     const check = hr+ ':' + m.substr(-2) + ':' + s.substr(-2);
-    //console.log(check);
     let day = new Date(foredate + " " + check);
-    console.log(day);
     
-  const weekDay = new Intl.DateTimeFormat('en-US', options).format(day);
-
-
-
+    const weekDay = new Intl.DateTimeFormat('en-US', options).format(day);
+    
     return(
-
         <React.Fragment>
-            <li class="list-group-item border-0" key={id}>
-            <img src={baseUrl + weatherIcon} width="40px" height="40px" alt=''/> <br />
-            <p>{weekDay}</p>
+            <li class="list-group-item border-0" key={id} id={id}>
+                <p>{weekDay}</p>
+                <hr />
+                <img src={baseUrl + weatherIcon} width="40px" height="40px" alt=''/>
             </li>
         </React.Fragment>
     );
 }
 
 function RenderFiveForecast({forecasts}){
-if(forecasts){
-    return(
-        <div>
+    if(forecasts){
+        return(
+        <React.Fragment>
+
             <ul class="list-group list-group-horizontal text-center ">
             {forecasts.slice(0,5).map( forecast => {
                 let key = 0;
@@ -51,11 +47,11 @@ if(forecasts){
                 )
             })}
             </ul>
-
-        </div>
-    );
-}
-
+        </React.Fragment>
+        );
+    } else {
+        return <div />;
+    }
 }
 
 export const FiveDayForecast = (props) => {
@@ -63,27 +59,17 @@ export const FiveDayForecast = (props) => {
 
     useEffect( () => {
     async function fetchForcast (){
-        const url = `http://api.weatherbit.io/v2.0/forecast/daily?&lat=${props.lat}&lon=${props.long}&key=${key2}`;
+        const url = `http://api.weatherbit.io/v2.0/forecast/daily?&lat=${props.lat}&lon=${props.long}&key=${key1}`;
         const request = await Axios.get(url);
-        
         console.log(request.data.data);
         setData(request.data.data);
-
     }
-
-
         fetchForcast();
-        },[props]);
+    },[props]);
 
     return (
         <div>
-            {data.slice(0,5).map( forecast => {
-                return(
-                   <div />
-                )
-            })}
-
- <RenderFiveForecast forecasts={data}/> 
+            <RenderFiveForecast forecasts={data}/> 
         </div>
     )
 }
