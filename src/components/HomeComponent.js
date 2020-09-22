@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Container, TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
+import { Container, TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 import { Footer } from './FooterComponent';
 import Location from './LocationComponent';
 import classnames from 'classnames';
 import * as Icon from 'react-feather';
+import { SearchWeather } from './SearchWeather';
 
 export const Home = () => {
 
@@ -39,16 +40,15 @@ export const Home = () => {
                 </Nav>
         <TabContent activeTab={activeTab}>
         <TabPane tabId="1">
-
             <Location />
-
-
-
+        </TabPane>
+        <TabPane tabId="2">
+            <SearchWeather />
         </TabPane>
         </TabContent>  
         <hr />
         <Footer />
-                </Container>
+        </Container>
 
             </div>
         </div>

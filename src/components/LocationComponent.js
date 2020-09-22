@@ -1,24 +1,20 @@
 import React from 'react';
-import { usePosition } from 'use-position';
 import { CurrentWeather } from './CurrentWeather';
 import { FiveDayForecast } from './FiveDayForecast';
+import { GetLocationProvider } from './GetLocation';
 
-//import { CurrentWeather } from './CurrentWeather';
 
  const Location = () => {
-    const {
-        latitude,
-        longitude
-      } = usePosition();
 
-
- 
     return (
+      <GetLocationProvider>
         <div>
-          <CurrentWeather lat={latitude} long={longitude} />
+          <CurrentWeather />
           <hr />
-          <FiveDayForecast lat={latitude} long={longitude} />
+          <FiveDayForecast />
         </div>
+      </GetLocationProvider>
+
     )
 }
 

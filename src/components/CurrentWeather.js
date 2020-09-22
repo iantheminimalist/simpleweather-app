@@ -1,17 +1,19 @@
-import React , { useState, useEffect } from 'react';
-
+import React , { useState, useEffect, useContext } from 'react';
 import { Row , Col } from 'reactstrap';
 import { baseUrl } from './baseUrl';
 
+import { GetLocationContext } from './GetLocation';
 
 const axios = require('axios');
 
 //  WeatherBit API Keys
-  const key1 = process.env.REACT_APP_WEATHER_API_KEY2;
+  const key1 = process.env.REACT_APP_WEATHER_API_KEY;
     //const key2 = process.env.REACT_APP_WEATHER_API_KEY2;
 
-export const CurrentWeather = (props) => {
-    //console.log(props);
+export const CurrentWeather = () => {
+
+ const [latitude , longitude] = useContext(GetLocationContext);
+    console.log(latitude + longitude);
 
     const [ data , setData ] = useState( [] ); // grab weather data
     const [weather, setWeatherIcon ] = useState( '' ); // grab weather code
@@ -22,7 +24,7 @@ export const CurrentWeather = (props) => {
     useEffect( () => {
 
     async function fetchWeather (){
-        const url = `https://api.weatherbit.io/v2.0/current?&lat=${props.lat}&lon=${props.long}&key=${key1}`;
+        const url = `https://api.weatherbit.io/v2.0/current?&lat=${latitude}&lon=${longitude}&key=${key1}`;
             const request = await axios.get(url);
             console.log(request.data.data);
             setData(request.data.data[0]);
@@ -31,7 +33,7 @@ export const CurrentWeather = (props) => {
     }
     fetchWeather();
 
-    }, [props]);
+    }, [latitude, longitude]);
      
     const weatherIcon =  `/assets/icons/${weather.icon}.png`;
     return ( 
