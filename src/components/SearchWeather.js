@@ -1,7 +1,9 @@
 import React from 'react';
 import { Container} from 'reactstrap';
-import { SearchForm } from './SearchComponent';
+import { SearchForm } from './SearchForm';
 
+import { SearchProvider } from './SearchProvider';
+import { SearchResults } from './SearchResults';
 
 
 
@@ -10,11 +12,13 @@ export const SearchWeather = () => {
 
     return (
         <div className="py-2">
+            <SearchProvider>
             <Container>
-
-            <SearchForm />
-
+                <SearchResults />
+                <SearchForm />
             </Container>
+            </SearchProvider>
+
 
         </div>
     )

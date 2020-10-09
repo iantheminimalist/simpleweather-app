@@ -36,17 +36,18 @@ export const CurrentWeather = () => {
     }, [latitude, longitude]);
      
     const weatherIcon =  `/assets/icons/${weather.icon}.png`;
+    
     return ( 
         <div className="pt-4">
 
             <Row>
             <Col md="5" className=" text-center ">
-                <img src={baseUrl + weatherIcon} className="weatherIcon" width="85px" height="85px" alt=''/> <br />
+                <img src={ baseUrl + weatherIcon } className="weatherIcon" width="85px" height="85px" alt=''/> <br />
                 <p>{weather.description}</p>
 
             </Col>
             <Col md="7" className="text-md-left text-center">
-                <h2>{data.city_name}, {data.state_code}</h2>
+                <h3>{data.city_name}, {data.state_code}</h3>
                 <h4>{data.temp}°C</h4>
                 <h4>{time}</h4>
             </Col>

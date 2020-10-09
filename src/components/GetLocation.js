@@ -3,9 +3,6 @@ import { usePosition } from 'use-position';
 
 export const GetLocationContext = createContext();
 
-
-
-  
 export const GetLocationProvider = props => {
     const watch = true;
     
@@ -22,4 +19,4 @@ console.log(error)
             {props.children}
         </GetLocationContext.Provider>
         )
-}
+};
