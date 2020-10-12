@@ -48,7 +48,7 @@ export const CurrentWeather = () => {
             </Col>
             <Col md="7" className="text-md-left text-center">
                 <h3>{data.city_name}, {data.state_code}</h3>
-                <h4>{data.temp}°C</h4>
+                <h4>{data.temp} °C</h4>
                 <h4>{time}</h4>
             </Col>
         </Row>

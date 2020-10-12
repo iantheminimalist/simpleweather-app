@@ -57,14 +57,14 @@ function RenderFiveForecast({forecasts}){
 export const FiveDayForecast = () => {
 
     const [latitude , longitude] = useContext(GetLocationContext);
-    console.log(latitude + longitude);
+    // console.log(latitude + longitude);
     const [ data, setData ] = useState([]);
 
     useEffect( () => {
     async function fetchForcast (){
         const url = `http://api.weatherbit.io/v2.0/forecast/daily?&lat=${latitude}&lon=${longitude}&key=${key1}`;
         const request = await Axios.get(url);
-        console.log(request.data.data);
+        // console.log(request.data.data);
         setData(request.data.data);
     }
         fetchForcast();

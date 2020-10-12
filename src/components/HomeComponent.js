@@ -8,7 +8,7 @@ import { SearchWeather } from './SearchWeather';
 
 export const Home = () => {
 
-    const [activeTab, setActiveTab] = useState('1');
+    const [activeTab, setActiveTab] = useState('2');
 
     const toggle = tab => {
         if(activeTab !== tab) setActiveTab(tab);

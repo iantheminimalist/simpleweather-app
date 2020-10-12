@@ -9,7 +9,7 @@ const initialState = {
             weather: {
                 icon: "c04n", 
                 code: 804, 
-                description: "Overcast clouds"
+                //description: "Overcast clouds"
             }
         }
     ]
@@ -22,11 +22,15 @@ export const SearchProvider = props => {
     
     //actions
     function addSearch(weatherData){
+        console.log("addSearch: " + weatherData[0])
         dispatch({
             type: 'ADD_SEARCH',
             payload: weatherData
         });
     }
+
+
+
     return (
         <SearchContext.Provider value={{
             weatherData: state.weatherData,
