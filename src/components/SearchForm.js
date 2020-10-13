@@ -17,16 +17,23 @@ export const SearchForm = () => {
         const url = `https://api.weatherbit.io/v2.0/current?city=${data.City}&state=${data.State}&key=${key1}`;
         const request = await Axios.get(url);
         // console.log(request.data.data); //request data
-
-        addSearch(request.data.data[0]);
-
+        if(request){
+            addSearch(request.data.data[0]);
+        }
+        else{
+            console.log(
+                request
+            )
+        }
     };
 
 
     return (
         <div className="pt-1">
             <Container>
-
+            <div className="py-3 text-center">
+                <h4>Weather Search</h4>
+            </div>
                 <Form onSubmit={handleSubmit(onSubmit)} >
                     <Row form>
                         <Col md={9}>

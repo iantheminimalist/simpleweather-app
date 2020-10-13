@@ -11,10 +11,11 @@ export const SearchWeather = () => {
 
 
     return (
-        <div className="py-2">
+        <div className="py-4">
             <SearchProvider>
             <Container>
                 <SearchResults />
+
                 <SearchForm />
             </Container>
             </SearchProvider>
