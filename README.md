@@ -20,14 +20,14 @@ Here are some of my designs and what to expect from the project:
 <p align="center">Main Page - Fullscreen</p>
 
 <p align="center">
-<img  src="https://github.com/rorypond/simpleweather-app/blob/master/public/assets/screenshots/mainpage.png?raw=true">
+<img  src="https://github.com/iantheminimalist/simpleweather-app/blob/master/public/assets/screenshots/mainpage.png?raw=true">
 </p>
 
 
 <p align="center">Main Page - Mobile/Vertical</p>
 
 <p align="center"> 
-<img  src="https://github.com/rorypond/simpleweather-app/blob/master/public/assets/screenshots/mainpage-mobile.png?raw=true">
+<img  src="https://github.com/iantheminimalist/simpleweather-app/blob/master/public/assets/screenshots/mainpage-mobile.png?raw=true">
 </p>
 
 
@@ -35,5 +35,5 @@ Here are some of my designs and what to expect from the project:
 
 <p align="center">
  
-<img  src="https://github.com/rorypond/simpleweather-app/blob/master/public/assets/screenshots/secondTab-mobile.png?raw=true">
+<img  src="https://github.com/iantheminimalist/simpleweather-app/blob/master/public/assets/screenshots/secondTab-mobile.png?raw=true">
 </p>
